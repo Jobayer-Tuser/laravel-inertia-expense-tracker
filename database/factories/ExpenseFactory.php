@@ -21,8 +21,15 @@ class ExpenseFactory extends Factory
      */
     public function definition()
     {
+        $expenseCategory = config('expense.expense_category');
+        $paymentMethod = config('expense.payment_method');
         return [
-            //
+            'user_id' => 1,
+            'description' => $this->faker->sentence(4),
+            'date' => $this->faker->date('Y-m-d'),
+            'amount' => $this->faker->numberBetween(50, 500),
+            'category' => $this->faker->randomElement($expenseCategory),
+            'payment_method' => $this->faker->randomElement($paymentMethod),
         ];
     }
 }

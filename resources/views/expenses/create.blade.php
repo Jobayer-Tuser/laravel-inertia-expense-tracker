@@ -11,20 +11,20 @@
                 {{csrf_field()}}
                 <div class="form-group">
                     <label for="exampleInputEmail1">Add Description</label>
-                    <textarea name="description" type="text" class="form-control"></textarea>
+                    <textarea name="description" type="text" class="form-control">{{old('description', 'description')}}</textarea>
                     <span class="text-danger error">{{$errors->first('description')}}<span>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Date</label>
-                    <input name="date" type="date" class="form-control"/>
+                    <input name="date" type="date" class="form-control" />
                     <span class="text-danger error">{{$errors->first('date')}}<span>
 
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Amount</label>
-                    <input name="amount" type="text" class="form-control"/>
+                    <input name="amount" type="text" class="form-control" value="{{old('amount', '1')}}"/>
                     <span class="text-danger error">{{$errors->first('amount')}}<span>
 
                 </div>

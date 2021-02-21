@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Expense;
 
 class ExpenseSeeder extends Seeder
 {
@@ -13,6 +14,6 @@ class ExpenseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Expense::factory(10)->create();
+        Expense::factory(10)->create();
     }
 }

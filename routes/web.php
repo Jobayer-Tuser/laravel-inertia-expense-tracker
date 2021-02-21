@@ -27,6 +27,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/expense', [ExpenseController::class, 'index'])->name('expense.list');
     Route::get('/expense/create', [ExpenseController::class, 'create'])->name('expense.create');
     Route::post('/expense/store', [ExpenseController::class, 'store'])->name('expense.store');
+    Route::get('/expense/show/{expense}', [ExpenseController::class, 'show'])->name('expense.show');
 });
 
 /*

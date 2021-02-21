@@ -9,6 +9,14 @@ use App\Models\Expense;
 
 class ExpenseController extends Controller
 {
+    private $expenseCategory;
+    private $paymentMethod;
+
+    public function __construct()
+    {
+        $this->expenseCategory = config('expense.expense_category');
+        $this->paymentMethod = config('expense.payment_method');
+    }
     public function index()
     {
         //$expenses = Expense::orderByDesc('id')->get();
@@ -19,26 +27,20 @@ class ExpenseController extends Controller
 
     public function create()
     {
-        $expenseCategory = config('expense.expense_category');
-        $paymentMethod = config('expense.payment_method');
-
         return view('expenses.create')->with([
-            'expenses' => $expenseCategory,
-            'payment' => $paymentMethod
+            'expenses' => $this->expenseCategory,
+            'payment' => $this->paymentMethod
         ]);
     }
 
     public function store(Request $request)
     {
-        $expenseCategory = config('expense.expense_category');
-        $paymentMethod = config('expense.payment_method');
-
         $postData = $this->validate($request, [
             'description' => ['required', 'min:3'],
             'date' => ['required', 'date'],
             'amount' => ['required', 'min:1'],
-            'category' => ['required', Rule::in($expenseCategory)],
-            'payment_method' => ['required', Rule::in($paymentMethod)],
+            'category' => ['required', Rule::in($this->expenseCategory)],
+            'payment_method' => ['required', Rule::in($this->paymentMethod)],
         ]);
         // dd($postData);
         # $postData['user_id'] = $this->user()->id; [1]way we can get value
@@ -46,5 +48,13 @@ class ExpenseController extends Controller
 
         Expense::create($postData);
         return redirect()->route('expense.list');
+    }
+
+    public function show(Expense $expense)
+    {
+        return view('expense.show')->with([
+            'expenseCategories' => $this->expenseCategory,
+            'paymentMethods' => $this->paymentMethod
+        ]);
     }
 }

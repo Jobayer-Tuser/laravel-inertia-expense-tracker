@@ -30,21 +30,21 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleFormControlSelect1">Category</label>
-                    <select name="category_type" class="form-control" >
+                    <select name="category" class="form-control" >
                         @foreach($expenses as $expense)
                              <option active value="{{$expense}}">{{$expense}}</option>
                         @endforeach
                     </select>
-                    <span class="text-danger error">{{$errors->first('category_type')}}<span>
+                    <span class="text-danger error">{{$errors->first('category')}}<span>
                 </div>
                 <div class="form-group">
                     <label>Payement Type</label>
-                    <select name="payment_type" class="form-control" >
+                    <select name="payment_method" class="form-control" >
                         @foreach($payment as $payment)
                             <option active value="{{$payment}}">{{$payment}}</option>
                         @endforeach
                     </select>
-                    <span class="text-danger error">{{$errors->first('payment_type')}}<span>
+                    <span class="text-danger error">{{$errors->first('payment_method')}}<span>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Submit</button>

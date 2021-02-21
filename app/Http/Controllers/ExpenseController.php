@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Expense;
 
 class ExpenseController extends Controller
@@ -36,11 +37,14 @@ class ExpenseController extends Controller
             'description' => ['required', 'min:3'],
             'date' => ['required', 'date'],
             'amount' => ['required', 'min:1'],
-            'category_type' => ['required', Rule::in($expenseCategory)],
-            'payment_type' => ['required', Rule::in($paymentMethod)],
+            'category' => ['required', Rule::in($expenseCategory)],
+            'payment_method' => ['required', Rule::in($paymentMethod)],
         ]);
         // dd($postData);
+        # $postData['user_id'] = $this->user()->id; [1]way we can get value
+        $postData['user_id'] = Auth::user()->id;
+
         Expense::create($postData);
-        return $request->all();
+        return redirect()->route('expense.list');
     }
 }

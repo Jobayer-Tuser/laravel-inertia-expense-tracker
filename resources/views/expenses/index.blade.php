@@ -23,7 +23,7 @@
         <td>{{$expense->created_at}}</td>
         <td>
           <a class="btn btn-sm btn-secondary" href="{{route('expense.show', $expense->id)}}">View</a>
-          <a class="btn btn-sm btn-danger" href="{{route('expense.show', $expense->id)}}">Delete</a>
+          <a class="btn btn-sm btn-danger" href="{{route('expense.destroy', $expense->id)}}">Delete</a>
         </td>
     </tr>
     @endforeach

@@ -28,6 +28,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/expense/create', [ExpenseController::class, 'create'])->name('expense.create');
     Route::post('/expense/store', [ExpenseController::class, 'store'])->name('expense.store');
     Route::get('/expense/show/{expense}', [ExpenseController::class, 'show'])->name('expense.show');
+    Route::post('/expense/update', [ExpenseController::class, 'update'])->name('expense.update');
+    Route::get('/expense/delete/{expense}', [ExpenseController::class, 'destroy'])->name('expense.destroy');
 });
 
 /*

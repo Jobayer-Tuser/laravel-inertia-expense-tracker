@@ -7,9 +7,9 @@
             Create Expense
         </div>
         <div class="card-body">
-            <form method="post" action="{{route('expense.store')}}">
+            <form method="post" action="{{route('expense.update')}}">
 
-                @include('expenses._form');
+                @include('expenses._form')
 
             </form>
         </div>

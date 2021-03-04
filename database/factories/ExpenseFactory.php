@@ -21,6 +21,7 @@ class ExpenseFactory extends Factory
      */
     public function definition()
     {
+        #this variable data are coming from [config/expense.php ] it's returning an array
         $expenseCategory = config('expense.expense_category');
         $paymentMethod = config('expense.payment_method');
         return [

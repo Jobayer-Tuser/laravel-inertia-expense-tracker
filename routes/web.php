@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ExpenseController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,10 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/expenses', [ExpenseController::class, 'index'])->name('expense.list')->middleware('auth');
     });
 */
+
+Route::get('/inertia', function(){
+    return Inertia::render('Home/index');
+});
+Route::inertia('/about',  function(){
+    return Inertia::render('Home/index');
+});
